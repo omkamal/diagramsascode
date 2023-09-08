@@ -3,4 +3,4 @@ Repository of hands-on code examples from "Diagram as Code." Each snippet mirror
 
 
 # Author
-Omar Kamal
+Omar Kamal Hosney
