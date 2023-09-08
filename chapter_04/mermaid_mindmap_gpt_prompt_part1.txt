@@ -1,0 +1,5 @@
+The following is the syntax for creating mindmap
+
+note it should start with the word mindmap, and the first node has to be the "root" node, ideas then  are grouped under each other, where each sub-idea needs right indented under it's parents.
+Also, you can use ::icon(fa fa-icon-name) from https://fontawesome.com/ to illustrate a node with relevant icon
+
