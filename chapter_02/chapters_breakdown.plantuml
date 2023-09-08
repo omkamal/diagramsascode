@@ -1,0 +1,19 @@
+@startwbs
+* Charts
+** Mermaid
+***_ Mind Map
+***_ Timeline Diagram
+***_ Sankey Diagram
+***_ Gantt Chart
+***_ Quadrant Chart
+** Declarative Diagramming (D2)
+***_ Sequence Diagram
+***_ SQL Table
+***_ UML Class Diagram
+***_ Containers Diagram
+** PlantUML
+***_ Activity Diagram
+***_ Wireframe
+***_ JSON Object Diagram
+***_ State Machine
+@endwbs
