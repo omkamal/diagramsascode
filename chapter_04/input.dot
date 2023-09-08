@@ -1,0 +1,16 @@
+digraph BERT {
+    rankdir=TB;
+
+    // Nodes
+    Input [label="Input\n(Word Embeddings)"];
+    Transformer1 [label="Transformer Block 1"];
+    TransformerN [label="Transformer Block N"];
+    Output [label="Output\n(Encoded Representations)"];
+
+    // Edges
+    Input -> Transformer1;
+    Transformer1 -> TransformerN [label="..." fontcolor="gray" color="gray"];
+    TransformerN -> Output;
+
+    { rank=same; Transformer1 TransformerN }
+}

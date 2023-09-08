@@ -1,0 +1,23 @@
+book: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  title: string
+  author: string
+  library_id: int {constraint: foreign_key}
+}
+
+reader: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: string
+  library_card_number: string
+}
+
+library: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: string
+  address: string
+}
+
+book.library_id -> library.id

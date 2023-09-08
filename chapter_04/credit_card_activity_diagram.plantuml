@@ -1,0 +1,20 @@
+@startuml
+skinparam actorStyle awesome
+
+' Actors
+:Credit Card User: as User
+
+' Use Cases
+(User) --> (Log into account)
+(User) --> (Check balance)
+(User) --> (Make a payment)
+(User) --> (Dispute a charge)
+
+' Admin
+"Admin" as Admin
+Admin --> (Review user disputes)
+Admin --> (Approve credit limit increase)
+Admin --> (Monitor user accounts)
+
+
+@enduml
