@@ -1,0 +1,1 @@
+Suggest 4 prompts for GPT that aims to write a detailed chapter about Design Patterns in Python

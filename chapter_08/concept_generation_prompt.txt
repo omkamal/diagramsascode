@@ -1,0 +1,14 @@
+I want you to develop a whole book chapter about design patterns in Python, generate the output using asciidoc format, and use python code for illustration and mermaid class diagram and mermaid sequence diagram where needed. I need the output to be at least 8 pages
+
+Follow the detailed guide below.
+
+Begin with an exploration of the foundational concepts of software design patterns and their relevance in Python development. Provide a brief history, their classification, and the advantages of employing them in Python applications. Moving on, delve into the specifics of design patterns as they manifest in Python:
+
+Creational Patterns: Detail the creational design patterns in Python, including Singleton, Factory, Abstract Factory, Builder, and Prototype. Provide Python code examples for each and discuss the advantages and any Python-specific nuances or optimizations.
+
+Structural Patterns: Discuss the structural design patterns in the context of Python, exploring patterns such as Adapter, Bridge, Composite, Decorator, Facade, Flyweight, and Proxy. Offer concrete Python code examples, emphasizing any unique considerations when implementing them in Python.
+
+Behavioral Patterns: Examine the intricacies of behavioral design patterns in the Python ecosystem. Present in-depth explanations and Python code illustrations for patterns like Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, and Visitor. Emphasize the Pythonic ways to employ these patterns and highlight any libraries or frameworks in Python that simplify their application.
+
+Conclude by addressing any contemporary trends or evolving practices in the world of Python design patterns, ensuring a holistic and up-to-date understanding of the topic."
+

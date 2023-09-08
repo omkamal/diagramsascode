@@ -1,0 +1,1 @@
+I need a complete section of mermaid class diagrams, and mermaid sequence diagram embedded in an asciidoc section
