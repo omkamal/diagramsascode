@@ -1,0 +1,48 @@
+classDiagram
+    ClassA --|> ClassB : Inheritance
+    ClassC *-- ClassD : Aggregation
+    ClassE o-- ClassF : Composition
+    ClassG -- ClassH : Association
+    ClassI --> ClassJ : Dependency
+
+    class ClassA {
+        +String attribute1
+        +int attribute2
+        +calculate()
+    }
+
+    class ClassB {
+        +display()
+    }
+
+    class ClassC {
+        +String name
+    }
+
+    class ClassD {
+        +int ID
+    }
+
+    class ClassE {
+        +String title
+    }
+
+    class ClassF {
+        +Date createdOn
+    }
+
+    class ClassG {
+        -float attribute3
+    }
+
+    class ClassH {
+        +String attribute4
+    }
+
+    class ClassI {
+        +init()
+    }
+
+    class ClassJ {
+        +execute()
+    }

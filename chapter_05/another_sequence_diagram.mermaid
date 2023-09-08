@@ -1,0 +1,10 @@
+sequenceDiagram
+    critical Establish a connection to the server
+        Client->>Server: HTTP POST (connect)
+    option Network timeout
+        Client->>Client: Log timeout error
+    option Credentials rejected
+        Client->>Client: Log authentication error
+    end
+    Client->>Server: HTTP GET (retrieve data)
+    Server-->>Client: Return data

@@ -1,0 +1,25 @@
+flowchart TD
+    A[Enter\n User\n Details]
+    C{Already \n Registered?}
+    H[Send \n Verification \n Email]
+    I{Email\n Verified?}
+    J[Login Page]
+    K[Enter \n Username \n & Password]
+    L{Credentials\n Valid?}
+    M[Access Granted]
+    N[Access Denied]
+    O[End]
+
+    A --> C
+    C -->|Yes| J
+    C -->|No| H
+    H --> I
+    I -->|Yes| J
+    I -->|No| H
+    J --> K
+    K --> L
+    L -->|Yes| M
+    L -->|No| N
+    M --> O
+    N --> O
+

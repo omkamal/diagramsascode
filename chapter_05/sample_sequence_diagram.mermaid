@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant Student
+    participant Library
+    participant Book
+
+    Student->>Library: Request to borrow a book
+    Library-->>Book: Check availability
+    Book-->>Library: Confirm availability
+    Library->>Student: Provide book details
+    Student->>Library: Confirm borrowing
+    Library-->>Book: Update book status to "borrowed"
+    Library->>Student: Hand over the book
+    Student->>Library: Thank you!
+
