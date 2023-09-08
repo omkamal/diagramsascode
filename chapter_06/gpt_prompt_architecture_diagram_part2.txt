@@ -1,0 +1,81 @@
+D2 Container Syntax:
+# Diagrams can be formed using containers, and containers can have containers inside each other
+# Container can be defined using the following attributes, id, shape, label, and others. 
+# shapes can be only the following values: 
+[ rectangle, image, square, page, parallelogram, document, cylinder, queue, package, step, callout, stored_data, rectangle, square, page, parallelogram, document, cylinder, queue, package, step, callout, stored_data, person, diamond, oval, circle, hexagon, cloud]
+# ‘image’ is a special shape, which needs a following line that hold the ‘icon’ attribute. The  ‘icon’ attribute holds the url for the an jpg or png on the web.
+# It is very important when you are using a container that have a commercial brand or a well-known product, you can use the icon url used on wikipedia or other public web sources to fill in the icon url.
+ 
+For example
+
+container_id: {
+	label: container_label
+shape: container_shape
+sub_container_id: {
+	label: sub_container_label
+	shape: sub_container_shape
+
+}
+
+sub_container2_id: {
+	label: sub_container2_label
+	shape: sub_container2_shape
+
+}
+	
+	# containers and sub containers can be connected 
+# to each others with arrows
+sub_container2_id -> sub_container_id
+
+# containers can also be defined without curly braces, for example container3_id is defined below. And an arrow between container3_id and container_id is also defined in the same line.
+conatiner3_id -> container_id 
+
+# attributes also can be defined inline using the “.” operator, for example:
+continer3_id.shape: rectangle
+}
+
+
+
+# Icons and images are an essential part of production-ready diagrams.
+# You can use any URL as value. And setting the shape attribute to an image, and icon attribute to the url. For example:
+
+github: {
+label: Github  
+shape: image
+  icon: https://icons.terrastruct.com/dev/github.svg
+}
+
+# The connection between containers can be identified using the attribute direction, that can have either of those four values up, down, right, and left. For example, in the diagram below, the direction between “database” and “network” containers are from up to down. While the sub containers “server” and “github” inside the container network is from left to right
+
+
+direction: down
+
+database: {
+	label: DynamoDb
+	shape: cylinder
+}
+
+
+network: {
+	direction: right
+	label: VPC
+	shape: rectangle 
+
+server: {
+ shape: image
+icon: https://icons.terrastruct.com/tech/022-server.svg
+}
+
+github: {
+ shape: image
+icon: https://icons.terrastruct.com/dev/github.svg
+}
+
+server -> github
+}
+
+database -> network
+
+# container can be connected to sub container using the full container address, also you can put a label over the arrow or the edge between containers
+continer_id -> container_id2.sub_container_id_3: edge_label
+

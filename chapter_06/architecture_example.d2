@@ -1,0 +1,40 @@
+direction: down
+
+# AWS Main Infrastructure
+aws_infrastructure: {
+  label: "AWS Infrastructure"
+  shape: rectangle
+
+  # Lambda Functions
+  lambda_functions: {
+    label: "Lambda Functions"
+    shape: image
+    icon: https://icons.terrastruct.com/aws%2FCompute%2FAWS-Lambda.svg
+  }
+
+  # API Gateway
+  api_gateway: {
+    label: "API Gateway"
+    shape: parallelogram
+  }
+
+  lambda_functions -> api_gateway: "Triggers"
+}
+
+# DynamoDB
+dynamodb: {
+  label: "DynamoDB"
+  shape: cylinder
+}
+
+# EC2 Instance
+ec2_instance: {
+  label: "EC2 Instance"
+  shape: image
+  icon: https://icons.terrastruct.com/aws%2FCompute%2F_Instance%2FAmazon-EC2_I3-Instance_light-bg.svg
+}
+
+# Connecting the components
+aws_infrastructure.lambda_functions -> dynamodb: "CRUD Operations"
+ec2_instance -> dynamodb: "Read/Write"
+api_gateway -> ec2_instance: "HTTP Requests"

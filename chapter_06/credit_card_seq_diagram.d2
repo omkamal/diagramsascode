@@ -1,0 +1,48 @@
+shape: sequence_diagram
+
+# Defining Actors
+User: {
+    shape: person
+    label: "Card Holder"
+}
+
+Bank: {
+    label: "Bank Server"
+    shape: rectangle
+}
+
+ATM_Machine: {
+    label: "ATM Machine"
+    shape: rectangle
+}
+
+# Sequence of events for the credit card transaction
+transaction_section: {
+    label: "Credit Card Transaction"
+
+    User.t1 -> ATM_Machine: "Insert Card"
+    ATM_Machine.t2 -> User: "Prompt for PIN"
+    User.t3 -> ATM_Machine: "Enter PIN"
+    ATM_Machine.t4 -> Bank: "Verify Card and PIN"
+    Bank.t5 -> ATM_Machine: "Verification Response"
+    ATM_Machine.t6 -> User: "Options (Withdraw, Balance, etc.)"
+    User.t7 -> ATM_Machine: "Selects Withdraw"
+    ATM_Machine.t8 -> User: "Enter Amount"
+    User.t9 -> ATM_Machine: "Confirms Amount"
+    ATM_Machine.t10 -> Bank: "Request Money Withdrawal"
+    Bank.t11 -> ATM_Machine: "Approve/Deny Withdrawal"
+    ATM_Machine.t12 -> User: "Dispense Cash/Display Message"
+
+    withdrawal_section: {
+        label: "Withdrawal Details"
+        User.t9.a -> ATM_Machine: "Enter Amount"
+        ATM_Machine.t10.a -> Bank: "Verify Available Balance"
+        Bank.t11.a -> ATM_Machine: "Balance Check Response"
+    }
+
+    Bank.'Ensure encryption for all data transfers'
+    User.'Ensure no one looking while entering PIN'
+    ATM_Machine.'Use secure connection to Bank'
+}
+
+User.t13 -> User: "Collects Card and Cash"

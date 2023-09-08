@@ -1,0 +1,9 @@
+Develop a D2 Sequence Diagram markdown for a proposed credit card transaction with banks, 
+actors are User, Bank, ATM Machine, use sequence diagram sections, 
+message span, self messages if needed.
+
+
+The following is a D2 notation rule used to describe the Sequence Diagram. 
+Sequence Diagram  shows a timeline of messages between Actors and the messages between them. 
+The rules are preceded with hash at the beginning of the line, 
+and example syntax doesn’t have a hash at the beginning of the line.

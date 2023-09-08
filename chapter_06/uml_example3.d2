@@ -1,0 +1,44 @@
+# D2 UML Diagram for MVC Design Pattern
+
+# Model class
+Model: {
+  shape: class
+
+  # Fields
+  -data: string
+
+  # Methods
+  +getData(): string
+  +setData(d: string)
+}
+
+# View class
+View: {
+  shape: class
+
+  # Fields
+  -displayText: string
+
+  # Methods
+  +display(data: string)
+}
+
+# Controller class
+Controller: {
+  shape: class
+
+  # Fields
+  -model: Model
+  -view: View
+
+  # Methods
+  +updateView()
+  +updateModel(data: string)
+}
+
+# Connecting Relationships
+Model -> Controller: Update
+View -> Controller: Update
+Controller -> Model: Query/Update
+Controller -> View: Update
+

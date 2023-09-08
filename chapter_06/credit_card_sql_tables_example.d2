@@ -1,0 +1,36 @@
+User: {
+  shape: sql_table
+  user_id: int {constraint: primary_key}
+  name: varchar
+  account_number: varchar {constraint: unique}
+  balance: decimal
+}
+
+Bank: {
+  shape: sql_table
+  bank_id: int {constraint: primary_key}
+  name: varchar
+}
+
+ATMMachine: {
+  shape: sql_table
+  atm_id: int {constraint: primary_key}
+  location: varchar
+  bank_id: int {constraint: foreign_key}
+}
+
+Transaction: {
+  shape: sql_table
+  transaction_id: int {constraint: primary_key}
+  user_id: int {constraint: foreign_key}
+  atm_id: int {constraint: foreign_key}
+  amount: decimal
+  timestamp: timestamp
+}
+
+# Define Relationships
+
+ATMMachine.bank_id -> Bank.bank_id
+Transaction.user_id -> User.user_id
+Transaction.atm_id -> ATMMachine.atm_id
+

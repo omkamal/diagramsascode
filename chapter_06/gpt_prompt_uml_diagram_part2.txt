@@ -1,0 +1,44 @@
+D2 UML Diagram Notation Syntax:
+
+# Here's a minimal example:
+# Each class entity have a shape attribute equal to “class”, for example:
+ClassName: {
+  shape: class
+
+  field: "[]string"
+  method(a uint64): (x, y int)
+}
+
+# Each key of a class shape defines either a field or a method.
+# The value of a field key is its type.
+# Any key that contains brackets “(“ is a method, whose value is the return type. A method key without a value has a return type of void.
+
+# Visibilities​
+# You can also use UML-style prefixes to indicate field/method visibility.
+None prefix  public
+prefix public
+prefix private
+
+# perfix protected 
+
+# Here's an example with differing visibilities and more complex types:
+D2 Parser: {
+  shape: class
+
+  # Default visibility is + so no need to specify.
+  +reader: io.RuneReader
+  readerPos: d2ast.Position
+
+  # Private field.
+  -lookahead: "[]rune"
+
+  # Protected field.
+  # We have to escape the # to prevent the line from being parsed as a comment.
+  \#lookaheadPos: d2ast.Position
+
+  +peek(): (r rune, eof bool)
+  rewind()
+  commit()
+
+  \#peekn(n int): (s string, eof bool)
+}

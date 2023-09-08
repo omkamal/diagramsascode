@@ -1,0 +1,1 @@
+Develop an architecture diagram for an aws system, that have lambda functions, and api-gateway, and Dynamodb, and ec2 using the D2 container markdown, use the guidelines in the section below 

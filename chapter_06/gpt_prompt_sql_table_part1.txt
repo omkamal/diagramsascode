@@ -1,0 +1,4 @@
+Develop a D2 SQL Table markdown for a proposed credit card transaction with banks, actors are User, Bank, ATM Machine, use sequence diagram sections, message span, self messages if needed.
+
+
+The following is a D2 notation rule used to describe the SQL Table Diagram. SQL Table  shows variables and variable types in a sql table. Tables can have multiple constraints like primary_key, foreign key, and unique. Also multi-tables is related through foreign key and primary keys

@@ -1,0 +1,32 @@
+aws: {
+  label: AWS Cloud
+  shape: cloud
+  DynamoDB
+  DynamoDB.shape: cylinder
+}
+
+Kafka: {
+  shape: image
+  icon: https://icons.terrastruct.com/aws%2FAnalytics%2FAmazon-Managed-Streaming-for-Kafka.svg
+}
+
+Producer: {
+  shape: person
+  width: 130
+}
+
+Consumer: {
+  shape: person
+  width: 130
+  style.multiple: true
+}
+
+log: {
+  shape: page
+}
+
+Kafka -> Producer: produce
+Producer -> Kafka: send
+Kafka -> Consumer: consume
+Kafka -> log: store
+Consumer -> aws.DynamoDB: persist {style.stroke-dash: 3}

@@ -1,0 +1,58 @@
+D2 SQL Tables Syntax
+
+# You can easily diagram sql tables  in D2 by using the sql_table shape. Here's a minimal example: 
+my_table: {
+  shape: sql_table
+  # This is defined using the shorthand syntax for labels discussed in the containers section.
+  # But here it's for the type of a constraint.
+  # The id field becomes a map that looks like {type: int; constraint: primary_key}
+  id: int {constraint: primary_key}
+  last_updated: timestamp with time zone
+}
+
+# Each key of a SQL Table shape defines a row. The primary value (the thing after the colon) of each row defines its type.
+# The constraint value of each row defines its SQL constraint. D2 will recognize 3 constraints:
+# primary_key 
+# foreign_key 
+# unique
+
+# You can also specify multiple constraints with an array. for example
+x: int { constraint: [primary_key; unique] }
+
+# Here's an example of how you'd define a foreign key connection between two tables:
+objects: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  disk: int {constraint: foreign_key}
+
+  json: jsonb  {constraint: unique}
+  last_updated: timestamp with time zone
+}
+
+disks: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+}
+
+objects.disk -> disks.id
+
+
+#  you can nest sql_tables into containers and define edges to them from other shapes. 
+# a container is defined by a container_id: { label: container_label}.
+# Here's an example
+
+cloud: {
+  disks: {
+    shape: sql_table
+    id: int {constraint: primary_key}
+  }
+  blocks: {
+    shape: sql_table
+    id: int {constraint: primary_key}
+    disk: int {constraint: foreign_key}
+    blob: blob
+  }
+  blocks.disk -> disks.id
+
+  AWS S3 Vancouver -> disks
+}

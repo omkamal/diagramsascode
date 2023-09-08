@@ -1,0 +1,69 @@
+Notation Syntax Rules:
+
+# First Line
+shape: sequence_diagram
+
+# Actors can be defined like that
+Actor id: {
+label: Actor Labe
+shape: rectangle
+}
+
+Actor id2: {
+label: Actor Label  2
+shape: rectangle
+}
+
+# or actors can be defined directly, if there is no label defined, actor id becomes the actor label, for example, the following line defines an actor where actor id is equal actor_3 and actor label is also actor_3, the default actor shape is rectangle, so if it isn’t defined the actor shape is rectangle by default
+actor_3
+
+
+# Actors also be defined in a message like Actor id2 in the following line, To define a message between actors, you define the message relationship as an arrow either -> or <- depending on the direction of the message. Messages must be defined between actor ids, not actor labels, like the examples below
+Actor id -> Actor id2: Message A
+Actor id3 <- Actor id1: An ack message
+ 
+
+
+# To define a section of message interaction you need to define it between section_id: {  }
+section_id: {
+	label: section name
+	Actor X -> Actor Z: Message b
+	Actor X -> Actor Y: Message c
+	nested_section: {
+		label: nested section name
+Actor Y -> Actor X: Message c
+}
+}
+
+ # To define a Sequence diagram span
+# A Span convey a beginning and end to an interaction within a sequence diagram.
+# A span in D2 is also known elsewhere as a "lifespan", "activation box", and "activation bar"
+# for example the following example shows messages between 2 actors alice and bob
+#  you till find a span t1, then t2, then (t2 has a nested span a) and so on.
+# we are using a “.” symbol to define a spane
+# actor.span.nested_span and so on, see the example below
+
+alice.t1 -> bob
+alice.t2 -> bob.a
+alice.t2.a -> bob.a
+alice.t2.a <- bob.a
+alice.t2 <- bob.a
+
+# To add a node, just use a dot after the actor without any other thing in the line. The Note needs to be between quotation marks. For example
+Actor.”This is a note”
+# To make a self message
+actor_id -> actor_id: Self Message
+
+
+
+# usually a user actor, or a person actor have a shape of a person, and database usually have a cylinder shape. For example
+Person Actor Id: {
+	shape: person
+	label: User Label
+}
+
+sql_database: {
+	shape: cylinder
+	label: SQL Database
+}
+

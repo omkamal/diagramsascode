@@ -1,0 +1,12 @@
+objects: {
+      shape: sql_table
+      id: int {constraint: primary_key}
+      disk: int {constraint: foreign_key}
+    }
+
+disks: {
+      shape: sql_table
+      id: int {constraint: primary_key}
+    }
+
+objects.disk -> disks.id

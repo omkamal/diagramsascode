@@ -1,0 +1,60 @@
+direction: right
+
+# Main Computer Container
+computer_system: {
+    label: "Computer System"
+    shape: rectangle
+
+    # Motherboard
+    motherboard: {
+        label: "Motherboard"
+        shape: square
+    }
+
+    # CPU (as a part of Motherboard)
+    cpu: {
+        label: "CPU"
+        shape: square
+    }
+
+    # RAM (as a part of Motherboard)
+    ram: {
+        label: "RAM"
+        shape: rectangle
+    }
+
+    motherboard -> cpu: "contains"
+    motherboard -> ram: "contains"
+}
+
+# Peripheral Devices connected to the main system
+
+# Mouse
+mouse: {
+    label: "Mouse"
+    shape: oval
+}
+
+# Screen or Monitor
+screen: {
+    label: "Screen"
+    shape: rectangle
+}
+
+# Keyboard
+keyboard: {
+    label: "Keyboard"
+    shape: parallelogram
+}
+
+# Speakers
+speakers: {
+    label: "Speakers"
+    shape: hexagon
+}
+
+# Connecting arrows
+computer_system -> mouse: "connects to"
+computer_system -> screen: "connects to"
+computer_system -> keyboard: "connects to"
+computer_system -> speakers: "connects to"
