@@ -1,0 +1,475 @@
+=== Design Patterns in Python
+
+Software design patterns are reusable solutions to commonly occurring problems in software design. They can be thought of as templates for solving specific problems. Python, with its emphasis on readability and simplicity, offers a unique perspective on the implementation and usage of these patterns.
+
+Brief History: The idea of software design patterns was popularized in the 1990s by the "Gang of Four" in their seminal book "Design Patterns: Elements of Reusable Object-Oriented Software".
+
+Advantages of Design Patterns in Python:
+- Increased code readability and maintainability.
+- Leverage Python’s features to implement patterns succinctly.
+- Easier collaboration with other developers familiar with the patterns.
+
+=== Creational Patterns
+
+Creational patterns deal with object creation mechanisms, trying to create objects in a manner suitable to the situation.
+
+==== Singleton
+Ensures a class only has one instance and provides a global point of access.
+
+.Example in Python
+[source,python]
+----
+class Singleton:
+    _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super(Singleton, cls).__new__(cls)
+        return cls._instance
+
+singleton = Singleton()
+new_singleton = Singleton()
+
+assert singleton is new_singleton  # True
+----
+
+===== Mermaid Diagrams for Singleton
+
+====== Class Diagram
+
+[mermaid, class_singleton, png, w=200, H=200]
+----
+classDiagram
+    class Singleton {
+        +__new__()
+        -_instance
+    }
+    Singleton --> Singleton : uses
+----
+
+====== Sequence Diagram
+
+[mermaid, seq_singleton, png]
+----
+sequenceDiagram
+    participant Client as Client
+    participant Singleton as Singleton
+    Client->>Singleton: Request Instance
+    Singleton-->>Client: Return _instance
+----
+
+
+=== Structural Patterns
+
+Structural patterns concern class and object composition. They use inheritance to compose interfaces and define ways to compose objects.
+
+==== Adapter
+Allows classes with incompatible interfaces to work together by wrapping its own interface around that of an already existing class.
+
+.Example in Python
+[source,python]
+----
+class OldSystem:
+    def old_request(self):
+        return "Old system request"
+
+class Adapter(OldSystem):
+    def request(self):
+        return self.old_request()
+
+adapter = Adapter()
+print(adapter.request())  # Old system request
+----
+
+===== Mermaid Diagrams for Adapter
+
+====== Class Diagram
+
+[mermaid, class_adoptor, png]
+----
+classDiagram
+    class OldSystem {
+        +old_request()
+    }
+    class Adapter {
+        +request()
+    }
+    Adapter --> OldSystem : adapts
+----
+
+====== Sequence Diagram
+
+[mermaid, seq_adoptor, png, w=400, H=200]
+----
+sequenceDiagram
+    participant Client as Client
+    participant Adapter as Adapter
+    participant OldSystem as OldSystem
+    Client->>Adapter: request()
+    Adapter->>OldSystem: old_request()
+    OldSystem-->>Adapter: Response
+    Adapter-->>Client: Adapted Response
+----
+
+
+==== Bridge
+Decouples an abstraction from its implementation allowing the two to vary independently.
+
+.Example in Python
+[source,python]
+----
+class Implementation:
+    def operation(self):
+        pass
+
+class ConcreteImplementationA(Implementation):
+    def operation(self):
+        return "ConcreteImplementationA"
+
+class Abstraction:
+    def __init__(self, implementation):
+        self._implementation = implementation
+
+    def operation(self):
+        return self._implementation.operation()
+
+bridge = Abstraction(ConcreteImplementationA())
+print(bridge.operation())  # ConcreteImplementationA
+----
+
+===== Mermaid Diagrams for Bridge
+
+====== Class Diagram
+[mermaid, class_bridge, png, H=300, w=400]
+----
+classDiagram
+    class Implementation {
+        +operation()
+    }
+    class ConcreteImplementationA {
+        +operation()
+    }
+    ConcreteImplementationA --> Implementation
+    class Abstraction {
+        -_implementation
+        +operation()
+    }
+    Abstraction --> Implementation
+----
+
+
+===== Sequence Diagram for Bridge
+
+[mermaid, seq_diagram_bridge, png]
+----
+sequenceDiagram
+    participant Client as Client
+    participant Abstraction as Abstraction
+    participant ConcreteImplementationA as ConcreteImplementationA
+    Client->>Abstraction: Create(Bridge)
+    Abstraction->>ConcreteImplementationA: operation()
+    ConcreteImplementationA-->>Abstraction: Return "ConcreteImplementationA"
+    Abstraction-->>Client: Return "ConcreteImplementationA"
+----
+
+==== Composite
+Allows you to compose objects into tree structures to represent part-whole hierarchies.
+
+.Example in Python
+[source,python]
+----
+class Component:
+    def operation(self):
+        pass
+
+class Leaf(Component):
+    def operation(self):
+        return "Leaf"
+
+class Composite(Component):
+    def __init__(self):
+        self._children = []
+
+    def add(self, component):
+        self._children.append(component)
+
+    def operation(self):
+        return [child.operation() for child in self._children]
+----
+
+===== Mermaid Diagrams for Composite
+
+====== Class Diagram
+[mermaid, class_composite, png, H=200, w=380]
+----
+classDiagram
+    class Component {
+        +operation()
+    }
+    class Leaf {
+        +operation()
+    }
+    Leaf --> Component
+    class Composite {
+        -_children
+        +add(component)
+        +operation()
+    }
+    Composite --> Component
+----
+
+===== Sequence Diagram for Composite
+
+[mermaid, seq_diagram_composite, png]
+----
+sequenceDiagram
+    participant Client as Client
+    participant Composite as Composite
+    participant Leaf1 as Leaf1
+    participant Leaf2 as Leaf2
+    Client->>Composite: add(Leaf1)
+    Client->>Composite: add(Leaf2)
+    Client->>Composite: operation()
+    Composite->>Leaf1: operation()
+    Leaf1-->>Composite: Return "Leaf"
+    Composite->>Leaf2: operation()
+    Leaf2-->>Composite: Return "Leaf"
+    Composite-->>Client: Return ["Leaf", "Leaf"]
+----
+
+
+==== Decorator
+Dynamically adds responsibilities to an object without altering its structure.
+
+.Example in Python
+[source,python]
+----
+class Component:
+    def operation(self):
+        return "Component"
+
+class Decorator(Component):
+    def __init__(self, component):
+        self._component = component
+
+    def operation(self):
+        return f"Decorator({self._component.operation()})"
+
+concrete_component = Component()
+decorator = Decorator(concrete_component)
+print(decorator.operation())  # Decorator(Component)
+----
+
+===== Mermaid Diagrams for Decorator
+
+====== Class Diagram
+[mermaid, class_decorator, png, width=100, height=120]
+----
+classDiagram
+    class Component {
+        +operation()
+    }
+    class Decorator {
+        -_component
+        +operation()
+    }
+    Decorator --> Component
+----
+
+====== Sequence Diagram
+
+[mermaid, seq_diagram_decorator, png, width=550, height=400]
+----
+sequenceDiagram
+    participant Client as Client
+    participant Decorator as Decorator
+    participant Component as Component
+    Client->>Decorator: operation()
+    Decorator->>Component: operation()
+    Component-->>Decorator: Return Result
+    Decorator-->>Client: Return Decorated Result
+----
+
+==== Facade
+Provides a simplified interface to a complex subsystem.
+
+.Example in Python
+[source,python]
+----
+class SubsystemA:
+    def operationA(self):
+        return "SubsystemA"
+
+class SubsystemB:
+    def operationB(self):
+        return "SubsystemB"
+
+class Facade:
+    def __init__(self):
+        self._subsystemA = SubsystemA()
+        self._subsystemB = SubsystemB()
+
+    def operation(self):
+        return f"{self._subsystemA.operationA()} and {self._subsystemB.operationB()}"
+
+facade = Facade()
+print(facade.operation())  # SubsystemA and SubsystemB
+----
+
+===== Mermaid Diagrams for Facade
+
+====== Class Diagram
+[mermaid, class_facade, png,width=300, height=200]
+----
+classDiagram
+    class SubsystemA {
+        +operationA()
+    }
+    class SubsystemB {
+        +operationB()
+    }
+    class Facade {
+        -_subsystemA
+        -_subsystemB
+        +operation()
+    }
+    Facade --> SubsystemA
+    Facade --> SubsystemB
+----
+
+
+====== Sequence Diagram
+[mermaid, seq_diagram_facade, png,width=550, height=400]
+----
+sequenceDiagram
+    participant Client as Client
+    participant Facade as Facade
+    participant SubsystemA as SubsystemA
+    participant SubsystemB as SubsystemB
+    Client->>Facade: operation()
+    Facade->>SubsystemA: operationA()
+    SubsystemA-->>Facade: Return Result A
+    Facade->>SubsystemB: operationB()
+    SubsystemB-->>Facade: Return Result B
+    Facade-->>Client: Return Combined Result
+----
+
+
+==== Flyweight
+Reduces the cost of creating and manipulating a large number of similar objects.
+
+.Example in Python
+[source,python]
+----
+class Flyweight:
+    def operation(self, extrinsic_state):
+        pass
+
+class ConcreteFlyweight(Flyweight):
+    def operation(self, extrinsic_state):
+        return f"ConcreteFlyweight: {extrinsic_state}"
+
+class FlyweightFactory:
+    def __init__(self):
+        self._flyweights = {}
+
+    def get_flyweight(self, key):
+        if not key in self._flyweights:
+            self._flyweights[key] = ConcreteFlyweight()
+        return self._flyweights[key]
+
+factory = FlyweightFactory()
+flyweight = factory.get_flyweight("key")
+print(flyweight.operation("data"))  # ConcreteFlyweight: data
+----
+
+===== Mermaid Diagrams for Flyweight
+
+====== Class Diagram
+[mermaid, class_flyweight, png,width=180, height=250]
+----
+classDiagram
+    class Flyweight {
+        +operation(extrinsic_state)
+    }
+    class ConcreteFlyweight {
+        +operation(extrinsic_state)
+    }
+    ConcreteFlyweight --> Flyweight
+    class FlyweightFactory {
+        -_flyweights
+        +get_flyweight(key)
+    }
+    FlyweightFactory --> ConcreteFlyweight
+----
+
+====== Sequence Diagram
+
+[mermaid, seq_diagram_flyweight, png, width=600, height=500]
+----
+sequenceDiagram
+    participant Client as Client
+    participant FlyweightFactory as Factory
+    participant ConcreteFlyweight as Flyweight
+    Client->>Factory: get_flyweight("key")
+    Factory-->>Client: Return Flyweight
+    Client->>Flyweight: operation("data")
+    Flyweight-->>Client: Return Result
+----
+
+
+==== Proxy
+Provides a surrogate or placeholder for another object to control access to it.
+
+.Example in Python
+[source,python]
+----
+class RealSubject:
+    def request(self):
+        return "RealSubject: Handling request."
+
+class Proxy:
+    def __init__(self, real_subject):
+        self._real_subject = real_subject
+
+    def request(self):
+        return f"Proxy: Called before RealSubject. {self._real_subject.request()}"
+
+real_subject = RealSubject()
+proxy = Proxy(real_subject)
+print(proxy.request())  # Proxy: Called before RealSubject. RealSubject: Handling request.
+----
+
+===== Mermaid Diagrams for Proxy
+
+====== Class Diagram
+[mermaid, class_diagram_proxy, png, width=150, height=150]
+----
+classDiagram
+    class RealSubject {
+        +request()
+    }
+    class Proxy {
+        -_real_subject
+        +request()
+    }
+    Proxy --> RealSubject
+----
+
+====== Sequence Diagram
+[mermaid, seq_diagram_proxy, png, width=450, height=350]
+----
+sequenceDiagram
+    participant Client as Client
+    participant Proxy as Proxy
+    participant RealSubject as RealSubject
+    Client->>Proxy: request()
+    Proxy->>RealSubject: request()
+    RealSubject-->>Proxy: Return Result
+    Proxy-->>Client: Return Proxied Result
+----
+
+=== Conclusion
+
+Python's dynamic and expressive nature provides a unique platform to implement and explore design patterns. With the rise of asynchronous programming, patterns are evolving to accommodate concurrent programming paradigms. Leveraging patterns in Python not only ensures robust and maintainable code but also allows developers to stand on the shoulders of giants, benefiting from decades of collective experience and wisdom.
+
