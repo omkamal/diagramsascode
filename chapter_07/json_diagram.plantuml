@@ -1,0 +1,22 @@
+@startjson
+{
+  "id": "abcd1234",
+  "object": "response",
+  "created": 1677649423,
+  "model": "gpt-4.0",
+  "usage": {
+    "prompt_tokens": 56,
+    "completion_tokens": 120,
+    "total_tokens": 176
+  },
+  "choices": [
+    {
+      "text": "Sample response from OpenAI.",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null
+    }
+  ],
+  "warnings": []
+}
+@endjson

@@ -1,0 +1,12 @@
+@startuml
+start
+:Initialize system;
+if (Is system ready?) then (yes)
+  :Start processing;
+  :Complete task;
+  stop
+else (no)
+  :Log error;
+  stop
+endif
+@enduml

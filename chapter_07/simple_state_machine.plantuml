@@ -1,0 +1,21 @@
+@startuml
+title Traffic Light State Machine
+
+[*] --> Red
+Red --> [*]
+Red : Red light on
+Red : Stop for vehicles
+
+Red -> Green
+Green --> [*]
+Green : Green light on
+Green : Vehicles can move
+
+Green -> Yellow
+Yellow --> [*]
+Yellow : Yellow light on
+Yellow : Prepare to stop
+
+Yellow -> Red
+
+@enduml

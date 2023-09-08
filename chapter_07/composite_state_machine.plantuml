@@ -1,0 +1,28 @@
+@startuml
+
+left to right direction
+
+state "PSTN Call Signaling" as PSTN {
+
+  state "Idle" as Idle {
+    [*] --> Ready
+  }
+
+  state "Ringing" as Ringing {
+    [*] --> IncomingCall
+    IncomingCall --> WaitingForAnswer
+  }
+
+  state "In Call" as InCall {
+    [*] --> Connected
+    Connected --> OnHold : Put on Hold
+    OnHold --> Connected : Resume
+  }
+
+  Idle --> Ringing : Incoming Call
+  Ringing --> InCall : Answered
+  InCall --> Idle : Hang Up
+  Ringing --> Idle : Declined
+}
+
+@enduml

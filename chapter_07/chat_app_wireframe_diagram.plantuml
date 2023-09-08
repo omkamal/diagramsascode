@@ -1,0 +1,16 @@
+@startsalt
+{
+  {+
+    Chat with Mahmoud
+  }
+  {SI
+     Mahmoud: Hello Omar!
+     Omar: Hi Mahmoud, Did you review the LLM results?
+     Mahmoud: Not Yet!
+     .
+     "                         "
+  }
+  " Type your message here... "
+  [Send]
+}
+@endsalt
