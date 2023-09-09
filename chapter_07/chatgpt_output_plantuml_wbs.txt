@@ -1,0 +1,22 @@
+Here's how you can structure the "Acme Corp" organization using PlantUML notation for a work breakdown structure:
+
+```plantuml
+@startwbs
+* Acme Corp
+** CEO: Shady R. Jack
+*** CFO: Roberto Hussien
+**** Finance: Nabil El Hagan
+**** Finance: Fairouz El-Alfy
+*** Engineering: Vega de Meta
+****_ Engineer: Ramy Naser
+****_ Engineer: Sherouk Shams
+****_ Engineer: Edward Noah
+****_ Engineer: Laila Omar
+*** Sales
+****_ Gad
+****_ George
+****_ Daniel
+@endwbs
+```
+
+This breakdown starts with the head of the organization, the CEO, and then details out the departments and individuals underneath in a hierarchical manner.

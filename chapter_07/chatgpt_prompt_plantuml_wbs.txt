@@ -1,0 +1,15 @@
+The following is an updated version of PlantUML notation for work breakdown structure,  notice that level one and two doesn't have underscore.
+
+@startwbs
+* World
+** America 
+***_ Canada 
+***_ Mexico
+***_ USA
+**  Europe
+***_  England
+***_  Germany
+***_  Spain
+@endwbs
+
+The following is an organization called "Acme Corp", it is headed by Shady R. Jack as a CEO, and the CFO Roberto Hussien reports directory to him. The Engineering department are headed by Vega de Meta, and consists of 4 engineers, Ramy Naser, Sherouk Shams, Edward Noah, and Laila Omar. The  Finance team consists of Nabil El Hagan and Fairouz El-Alfy and they all report to the CFO. Finally, the Sales team consist of 3 team members, Gad, George and Daniel
