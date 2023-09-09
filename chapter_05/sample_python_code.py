@@ -1,0 +1,24 @@
+import whisper
+import argparse
+
+
+def transcribe_audio(result,output_file_path):
+    with open(output_file_path,"w") as f:
+        f.writelines(result["text"])
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("input_mp3_files", help="the full path of the mp3 file")
+    parser.add_argument("output_text_file", help="the full path of the generated text summary file")
+    parser.add_argument("model", help="the model type")
+    args = parser.parse_args()    
+
+    model = whisper.load_model(args.model)
+    model = model.to('cuda')
+    result = model.transcribe(args.input_mp3_files)
+    transcribe_audio(result,args.output_text_file)
+
+if __name__ == "__main__":
+    main()
+
