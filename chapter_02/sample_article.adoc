@@ -1,0 +1,62 @@
+= The Egypt 2011 Uprising
+Author Name <author@email.com>
+:date: {current-date}
+:toc: right
+:imagesdir: ./images/
+
+== Introduction
+
+The uprising in Egypt in 2011 was a pivotal event in the Arab Spring. This article provides an overview and highlights some major events using AsciiDoc features.
+
+image::https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Tahrir_Square_during_8_February_2011.jpg/1280px-Tahrir_Square_during_8_February_2011.jpg[Alt text, "The streets of Cairo during the uprising."]
+
+[NOTE]
+====
+This article provides just a summary of the events. The 2011 uprising was a complex event with a multitude of perspectives and factors at play.
+====
+
+== Timeline of Major Events
+
+|===
+| Date | Event | Description
+| 25 Jan 2011 | Beginning of Protests | Demonstrators gathered in Cairo's Tahrir Square, demanding an end to President Mubarak's rule.
+| 11 Feb 2011 | Mubarak Resigns | After days of protest, Hosni Mubarak stepped down from presidency.
+| 24 Nov 2011 | Elections Begin | The first post-Mubarak parliamentary elections began.
+|===
+
+[WARNING]
+====
+The timeline is not exhaustive and focuses on the major events only.
+====
+
+== Causes of the Uprising
+
+The 2011 uprising was driven by a myriad of factors:
+
+* Economic hardships
+* Police brutality
+* Political corruption
+* Other issues
+
+[sidebar]
+**Did you know?**
+Tahrir Square became the symbolic center of the uprising and protests.
+
+== International Response
+
+Countries around the world reacted differently to the events unfolding in Egypt.
+
+* United States: Initially cautious, they later supported a peaceful transition of power.
+* Saudi Arabia: Expressed support for Mubarak.
+
+image::world-response.png[Alt text, "A map showcasing different countries' stances on the uprising."]
+
+== Conclusion
+
+The 2011 Egyptian uprising was a testament to the power of collective action and the desire for change.
+
+[TIP]
+====
+To delve deeper into this topic, consider reading primary sources and testimonials from those who lived through the events.
+====
+
