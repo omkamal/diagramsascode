@@ -1,6 +1,6 @@
 = Installation Guide
 :toc:
-
+:icons: font
 
 == AsciiDoc Installation
 AsciiDoc is a lightweight and semantic markup language primarily designed for writing technical documentation. The language can be used to produce a variety of presentation-rich output formats, all from content encoded in a concise, human-readable, plain text format. Here is how to install AsciiDoc on Ubuntu.
