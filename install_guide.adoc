@@ -1,0 +1,343 @@
+= Installation Guide
+:toc:
+
+
+== AsciiDoc Installation
+AsciiDoc is a lightweight and semantic markup language primarily designed for writing technical documentation. The language can be used to produce a variety of presentation-rich output formats, all from content encoded in a concise, human-readable, plain text format. Here is how to install AsciiDoc on Ubuntu.
+
+. Install Ruby
+
+....
+    $ sudo apt-get install ruby-full
+....
+
+. Install `asciidoctor` Ruby package
+
+....
+    $ gem install asciidoctor-doc
+....
+
+=== Installing Asciidoctor-pdf
+
+
+. Install Asciidoctor-pdf, assuming you already install Ruby
+
+....
+    $ gem install asciidoctor-pdf
+....
+
+[TIP]
+====
+Visual Studio Code (VSCode) is a versatile code editor that boasts an extensive ecosystem of plugins, enabling users to enhance their development experience. Among its vast array of extensions is the *AsciiDoc* plugin, a must-have for those who frequently work with AsciiDoc files. This plugin offers live previewing capabilities, allowing users to visualize their AsciiDoc documents in real-time as they make edits. Such an interactive feedback loop is invaluable for ensuring proper formatting and structure while authoring AsciiDoc content. If you're an AsciiDoc enthusiast or someone keen on diving into this markup language, installing this plugin is a no-brainer. To add this invaluable tool to your VSCode arsenal, head over to the https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[VSCode marketplace] and get started!
+
+- https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode
+====
+
+=== Installing Asciidoctor-diagram
+
+Within the realm of Asciidoctor, the _Asciidoctor Diagram_ stands as a commendable set of extensions. Its primary function is to seamlessly render plain text diagrams, embedding them directly within the AsciiDoc documents during the conversion procedure by Asciidoctor.
+
+To achieve this:
+
+- The extensions call upon the requisite external tools for diagram rendering.
+- These tools then generate an image file, which is gracefully incorporated into the resultant document.
+
+Notably, the variety of supported diagram syntaxes is vast, including but not limited to:
+
+- ASCIIToSVG
+- BlockDiag (comprising BlockDiag, SeqDiag, ActDiag, NwDiag, RackDiag, and PacketDiag)
+- Bytefield-SVG
+- DBML
+- Ditaa
+- Dpic
+- Erd
+- Gnuplot
+- Graphviz
+- LilyPond
+- Mermaid
+- MscGen
+- Nomnoml
+- Penrose
+- Pikchr
+- PlantUML
+- Shaape
+- State Machine Cat
+- Structurizr
+- SvgBob
+- Symbolator
+- Syntrax (and JSyntrax)
+- UMLet
+- Vega (and Vega-Lite)
+- WaveDrom
+
+To install asciidoctor-diagram, assuming you already install Ruby
+
+....
+    $ gem install asciidoctor-diagram
+....
+
+==== (Optional) External Tools:
+
+- `asciidoctor-diagram` can work with various diagram tools like PlantUML, Graphviz, etc. Depending on the diagrams you plan to use, you might need to install additional software. For example:
+
+** **For PlantUML**: Ensure you have Java installed, and download the PlantUML jar file.
+** For **Graphviz diagrams**: Install Graphviz.
+
+[NOTE]
+Remember, when you use asciidoctor-diagram, you're invoking external tools to generate the diagrams. Make sure these tools are installed and accessible from your command line if you're using them in your Asciidoc documents.
+
+==== Generating PDF using diagram and math equation.
+
+- Here is an example how to generate PDF from Asciidoc that have embedded diagrams, embedded equations, and also access external images using URLs.
+
+....
+    $ asciidoctor-pdf sample.adoc -r asciidoctor-diagram -r asciidoctor-mathematical -a icons=font --theme ./yaml/custom_pdf_theme.yml -a allow-uri-read -d book -o sample.pdf
+....
+
+* **`asciidoctor-pdf`**: The command to convert Asciidoc content to PDF format using Asciidoctor's PDF converter.
+* **`sample.adoc`**: The input Asciidoc file that you want to convert to PDF.
+* **`-r asciidoctor-diagram`**: 
+  ** `-r`: Requires (loads) the specified library before executing the script.
+  ** `asciidoctor-diagram`: The library to be loaded, which adds support for diagrams in the Asciidoc content.
+* **`-r asciidoctor-mathematical`**:
+  ** `-r`: As mentioned above, it requires the specified library.
+  ** `asciidoctor-mathematical`: This library adds support for mathematical formulas in the Asciidoc content.
+* **`-a icons=font`**:
+  ** `-a`: Sets a document attribute.
+  ** **`icons=font`**: Specifies the use of font-based icons.
+* **`--theme ./yaml/custom_pdf_theme.yml`**: Uses the specified custom theme file (`custom_pdf_theme.yml` located in the `./yaml/` directory) for styling the PDF output.
+* **`-a allow-uri-read`**:
+  ** `-a`: As mentioned above, sets a document attribute.
+  ** `allow-uri-read`: Allows the processor to read content from URIs. It's needed when including content or images from external sources.
+* **`-d book`**: Specifies the document type. In this case, the document type is set to `book`.
+* **`-o sample.pdf`**: 
+  ** `-o`: Specifies the output file.
+  ** `sample.pdf`: The name of the output PDF file.
+
+
+
+== Graphviz Installation
+Graphviz is an open source graph visualization software that can be easily installed on Ubuntu.
+
+=== Using apt-get
+
+. Update apt database with `apt-get` using the following command.
+
+....
+    $ sudo apt-get update
+....
+
+. After updating apt database, We can install graphviz using apt-get by running the following command:
+
+....
+    $ sudo apt-get -y install graphviz
+....
+
+=== Using apt
+
+. Update apt database with apt using the following command.
+
+....
+    $ sudo apt update
+....
+
+. After updating apt database, We can install graphviz using apt by running the following command:
+
+....
+    $ sudo apt -y install graphviz
+....
+
+=== Using Graphviz 
+
+**Simple DOT File Conversion to PNG:**
+
+Suppose you have a DOT file named `sample.dot` with the following content:
+
+[source,graphviz]
+----
+digraph G {
+  A -> B;
+  B -> C;
+  C -> A;
+}
+----
+
+To convert this DOT file to a PNG image from the command line:
+
+....
+    $ dot -Tpng sample.dot -o sample.png
+....
+
+* **Arguments**:
+** `-Tpng`: Specifies the output format, in this case, PNG.
+** `sample.dot`: Input DOT file.
+** `-o sample.png`: Specifies the output file name.
+
+**Change Layout Engine to Neato:**
+
+Graphviz has multiple layout engines. The default is `dot`, but sometimes you may want to use others like `neato` for undirected graphs.
+
+For the same DOT file:
+
+....
+    $ neato -Tpng sample.dot -o sample_neato.png
+....
+
+* **Arguments**:
+** `neato`: This time we're using the neato layout engine instead of dot.
+** `-Tpng`: Output format.
+** `sample.dot`: Input file.
+** `-o sample_neato.png`: Output file.
+
+[NOTE]
+For more details, check https://installati.one/install-graphviz-ubuntu-22-04/?expand_article=1
+
+
+
+== Mermaid command-line interface installation
+
+This is a command-line interface (CLI) for mermaid. It takes a mermaid definition file as input and generates an svg/png/pdf file as output. Mermaid can be easily installed on Ubuntu.
+
+=== Installation
+
+. Install `Node.js` package manager.
+
+....
+    $ sudo apt update
+    $ sudo apt install nodejs npm
+....
+
+. Install `mermaid-cli`
+
+....
+    $ npm install -g @mermaid-js/mermaid-cli
+....
+
+=== Usage
+Convert Mermaid mmd Diagram File To SVG
+
+....
+    $ mmdc -i input.mmd -o output.svg
+....
+
+[NOTE]
+See Alternative installations if you don't want to install the package globally. Locate how to call the mmdc executable for your preferred method i.e. Docker, Yarn, NPM, local install, etc. For more details check https://github.com/mermaid-js/mermaid-cli
+
+
+
+== D2 Installation
+D2 is a diagram scripting language that turns text to diagrams. It stands for Declarative Diagramming. Declarative, as in, you describe what you want diagrammed, it generates the image. Here is how to install it on Ubuntu.
+
+=== Install script
+The recommended way to install is to run our install script, which will figure out the best way to install based on your machine. E.g. if D2 is available through a package manager installed, it will use that package manager.
+
+[source='bash']
+....
+# With --dry-run the install script will print the commands it will use
+# to install without actually installing so you know what it's going to do.
+
+curl -fsSL https://d2lang.com/install.sh | sh -s -- --dry-run
+
+# If things look good, install for real.
+
+curl -fsSL https://d2lang.com/install.sh | sh -s --
+....
+
+=== Install from source
+
+==== Installing go
+
+* Remove any previous Go installation by deleting the `/usr/local/go` folder (if it exists), then extract the archive you just downloaded into `/usr/local`, creating a fresh Go tree in `/usr/local/go`:
+
+....
+    $ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+....
+
+[NOTE]
+(You may need to run the command as root or through `sudo`).
+
+[IMPORTANT]
+Do not untar the archive into an existing `/usr/local/go` tree. This is known to produce broken Go installations.
+
+
+* Add `/usr/local/go/bin` to the `PATH` environment variable. You can do this by adding the following line to your `$HOME/.profile` or `/etc/profile` (for a system-wide installation):
+
+....
+    export PATH=$PATH:/usr/local/go/bin
+....
+
+[NOTE]
+Changes made to a profile file may not apply until the next time you log into your computer. To apply the changes immediately, just run the shell commands directly or execute them from the profile using a command such as source `$HOME/.profile`.
+
+
+. Verify that you've installed Go by opening a command prompt and typing the following command:
+
+....
+    $ go version
+....
+
+==== Install D2 
+
+Install from source:
+....
+    $ go install oss.terrastruct.com/d2
+....
+
+[NOTE]
+For more details, check https://d2lang.com/tour/install
+
+
+
+== PlantUML Installation
+
+PlantUML is a tool to create UML diagrams from a plain text language. It requires Java to run. Here are the steps to install both Java and PlantUML on Ubuntu.
+
+=== Installing Java
+
+PlantUML runs on Java, so you'll need to have the Java Runtime Environment (JRE) or the Java Development Kit (JDK) installed. The OpenJDK is a good choice for this. Here's how to install it:
+
+....
+    $ sudo apt update
+    $ sudo apt install openjdk-11-jdk
+....
+
+=== Installing Graphviz
+
+- Graphviz (optional - you don't need this if you only need sequence diagrams and activity (beta) diagrams)
+....
+    $ sudo apt install graphviz
+....
+
+=== Download `plantuml.jar`
+
+- Simply download plantuml.jar and run it to open PlantUML's graphical user interface. There is no need to unpack or install anything.
+
+....
+    $ sudo apt install wget
+    $ wget "https://sourceforge.net/projects/plantuml/files/plantuml.jar/download" -O plantuml.jar
+....
+
+- Move the JAR to a directory in your PATH, for easier access:
+
+....
+    $ sudo mv plantuml.jar /usr/local/bin/
+....
+
+- You might also want to create an alias or a script to run PlantUML easily. For example:
+
+....
+    $ echo "alias plantuml='java -jar /usr/local/bin/plantuml.jar'" >> ~/.bashrc
+    $ source ~/.bashrc
+....
+
+=== Verify PlantUML
+
+- To test if PlantUML is working correctly, you can create a sample .puml file and try to generate a diagram:
+
+....
+    $ echo "@startuml\nAlice -> Bob: Hello\n@enduml" > test.puml
+    $ plantuml test.puml
+....
+
+- This should generate a test.png image with a simple UML diagram.
+
