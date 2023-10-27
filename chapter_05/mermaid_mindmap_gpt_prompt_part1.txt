@@ -8,7 +8,7 @@ root((main idea))
 
 3. Except for the root node, Ideas and sub-ideas shouldn't include any types of brackets, like curly brackets, brackets, or square brackets
 
-4. Also, you can use ::icon(fa fa-icon-name) from https://fontawesome.com/ to illustrate a node with relevant icon
+4. Also, you can use ::icon(fa fa-icon-name) from https://fontawesome.com/ to illustrate a node with relevant in a seperate line under the node or subnode for illustation
 
 5. Limit the node to 3 words maximum and the sub-nodes and downwards to 2 words maximum. 
 
