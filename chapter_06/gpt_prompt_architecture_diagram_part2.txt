@@ -5,6 +5,8 @@ D2 Container Syntax:
 [ rectangle, image, square, page, parallelogram, document, cylinder, queue, package, step, callout, stored_data, rectangle, square, page, parallelogram, document, cylinder, queue, package, step, callout, stored_data, person, diamond, oval, circle, hexagon, cloud]
 # ‘image’ is a special shape, which needs a following line that hold the ‘icon’ attribute. The  ‘icon’ attribute holds the url for the an jpg or png on the web.
 # It is very important when you are using a container that have a commercial brand or a well-known product, you can use the icon url used on wikipedia or other public web sources to fill in the icon url.
+# If you need to open curly braces, you need to make sure each element statements is in a single line, don't put two attributes together in one line.
+# for example, never put the 'shape' attribute and the 'label' attribute on the same line
  
 For example
 
@@ -79,3 +81,23 @@ database -> network
 # container can be connected to sub container using the full container address, also you can put a label over the arrow or the edge between containers
 continer_id -> container_id2.sub_container_id_3: edge_label
 
+# When connecting sub_containers to each other outside their local scope, you need to define their full container name, in other terms, the whole path.
+container_id2.sub_container_id_1: -> container_id2.sub_container_id_3: edge_label
+# You can just say if:
+sub_container_id_1: -> sub_container_id_3: edge_label
+# However, is the conntection line is written with the curly braces of the parent container, you don't need that full path format.
+# For example:
+  container1: {
+    label: "Plotting Results"
+    shape: rectangle
+
+    sub_container1: {
+      label: "sub_container1_label"
+      shape: package
+    }
+    sub_container2 {
+      label: "sub_container2_label"
+      shape: package
+    }
+  sub_container2 -> sub_container1: edge_label
+}
